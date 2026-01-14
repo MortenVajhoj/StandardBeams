@@ -2,6 +2,8 @@
 
 A simple tool for beam-dimensions and standards inside FreeCAD
 
+![I Beam](images/I_Beam.png)
+
 ## Different Beams
 
 * I-Beams (Standard IPN)
@@ -9,6 +11,8 @@ A simple tool for beam-dimensions and standards inside FreeCAD
 * Round Tubes (CHS)
 * Square Tubes (SHS)
 * Equal and Unequal Angles
+
+You can see the Area, Depth, Width, Inertia around x/y, and Plastic Modulus around x/y
 
 Note: this is the first version of the Addon. More Beams And Standards will be added
 
