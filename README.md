@@ -2,7 +2,8 @@
 
 A simple tool for beam-dimensions and standards inside FreeCAD
 
-![I Beam](images/I_Beam.png)
+![Workbench](images/WorkbenchPic.png)
+![Picking Beam](images/Modal.png)
 
 ## Different Beams
 
