@@ -5,7 +5,7 @@ import os
 class IBeam:
     def Activated(self):
         from PySide import QtWidgets
-        from scripts.i_beam import IBeamDialog, create_i_beam
+        from .scripts.i_beam import IBeamDialog, create_i_beam
 
         try:
             parent = QtWidgets.QApplication.activeWindow()
@@ -13,13 +13,14 @@ class IBeam:
             if dialog.exec_() == QtWidgets.QDialog.Accepted:
                 size_data = dialog.get_selected_size()
                 length = dialog.get_length()
-                create_i_beam(size_data, length)
+                standard = dialog.current_standard
+                create_i_beam(size_data, length, standard)
 
         except Exception:
             FreeCAD.Console.PrintError("I-Beam error")
 
     def GetResources(self):
-        icon = os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "IBeam.svg")
+        icon = os.path.join(os.path.dirname(__file__), "icons", "IBeam.svg")
         return {
             "MenuText": "I-Beam",
             "ToolTip": "Create a standard I-Beam profile",
@@ -33,7 +34,7 @@ class IBeam:
 class LAngle:
     def Activated(self):
         from PySide import QtWidgets
-        from scripts.l_angle import LAngleDialog, create_l_angle
+        from .scripts.l_angle import LAngleDialog, create_l_angle
 
         try:
             parent = QtWidgets.QApplication.activeWindow()
@@ -49,7 +50,7 @@ class LAngle:
             FreeCAD.Console.PrintError("L-Angle error")
 
     def GetResources(self):
-        icon = os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "LAngle.svg")
+        icon = os.path.join(os.path.dirname(__file__), "icons", "LAngle.svg")
         return {
             "MenuText": "L-Angle",
             "ToolTip": "Create a standard L-Angle profile",
@@ -63,7 +64,7 @@ class LAngle:
 class RectangularTube:
     def Activated(self):
         from PySide import QtWidgets
-        from scripts.rectangular_tube import RectangularTubeDialog, create_rectangular_tube
+        from .scripts.rectangular_tube import RectangularTubeDialog, create_rectangular_tube
 
         try:
             parent = QtWidgets.QApplication.activeWindow()
@@ -77,7 +78,7 @@ class RectangularTube:
             FreeCAD.Console.PrintError("Rectangular Tube error")
 
     def GetResources(self):
-        icon = os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "RectTube.svg")
+        icon = os.path.join(os.path.dirname(__file__), "icons", "RectTube.svg")
         return {
             "MenuText": "Rectangular Tube",
             "ToolTip": "Create a standard Rectangular Tube profile",
@@ -91,7 +92,7 @@ class RectangularTube:
 class SquareTube:
     def Activated(self):
         from PySide import QtWidgets
-        from scripts.square_tube import SquareTubeDialog, create_square_tube
+        from .scripts.square_tube import SquareTubeDialog, create_square_tube
 
         try:
             parent = QtWidgets.QApplication.activeWindow()
@@ -105,7 +106,7 @@ class SquareTube:
             FreeCAD.Console.PrintError("Square Tube error")
 
     def GetResources(self):
-        icon = os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "SquareTube.svg")
+        icon = os.path.join(os.path.dirname(__file__), "icons", "SquareTube.svg")
         return {
             "MenuText": "Square Tube",
             "ToolTip": "Create a standard Square Tube profile",
@@ -119,7 +120,7 @@ class SquareTube:
 class RoundTube:
     def Activated(self):
         from PySide import QtWidgets
-        from scripts.round_tube import RoundTubeDialog, create_round_tube
+        from .scripts.round_tube import RoundTubeDialog, create_round_tube
 
         try:
             parent = QtWidgets.QApplication.activeWindow()
@@ -133,7 +134,7 @@ class RoundTube:
             FreeCAD.Console.PrintError("Round Tube error")
 
     def GetResources(self):
-        icon = os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "RoundTube.svg")
+        icon = os.path.join(os.path.dirname(__file__), "icons", "RoundTube.svg")
         return {
             "MenuText": "Round Tube",
             "ToolTip": "Create a standard Round Tube profile",
@@ -158,7 +159,7 @@ class StandardBeamsWorkbench(Gui.Workbench):
 
     @property
     def Icon(self):
-        return os.path.join(FreeCAD.getUserAppDataDir(), "Mod", "StandardBeams", "icons", "IBeam.svg")
+        return os.path.join(os.path.dirname(__file__), "icons", "IBeam.svg")
 
     def Initialize(self):
         cmds = [
