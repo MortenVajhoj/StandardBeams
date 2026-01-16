@@ -5,7 +5,8 @@
     <date>2026-01-14</date>
     <description>A FreeCAD workbench to create standard beam profiles like I-Beams, L-Angles, Rectangular Tubes, Square Tubes, and Round Tubes.</description>
     <maintainer email="mortenvajhoj@gmail.com">Morten Vajhøj</maintainer>
-    <license file="LICENSE">LGPL-2.1-or-later</license>
+    <license file="LICENSE-CODE">LGPL-2.1-or-later</license>
+    <license file="LICENSE-ICON">CC-BY-SA-4.0</license>
     <url type="repository" branch="master">https://github.com/MortenVajhoj/StandardBeams</url>
     <url type="readme">https://github.com/MortenVajhoj/StandardBeams/blob/master/README.md</url>
     <icon>icons/IBeam.svg</icon>

@@ -1,4 +1,8 @@
 
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# SPDX-FileNotice: Part of the Standard Beams addon.
+
+
 import csv
 import os
 from PySide import QtWidgets, QtCore
