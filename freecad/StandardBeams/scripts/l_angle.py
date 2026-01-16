@@ -6,6 +6,7 @@ import csv
 import os
 from PySide import QtWidgets, QtCore
 
+from ..Misc.Imprint import imprint
 
 
 l_angle_standards = {
@@ -180,7 +181,10 @@ def create_l_angle(size_data, length, angle_type="equal", mirror=False):
     
     body = doc.addObject('PartDesign::Body', 'LAngleBody')
 
+    imprint(body)
+
     name = f"LAngle_Sketch"
+
     current_sketch = body.newObject('Sketcher::SketchObject', name)
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
