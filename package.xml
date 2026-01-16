@@ -1,23 +1,98 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
-    <name>Standard Beams</name>
-    <version>0.1</version>
+<?xml
+    version = '1.0'
+    encoding = 'UTF-8'
+    standalone = 'no'
+?>
+<package
+    format = '1'
+    xmlns = 'https://wiki.freecad.org/Package_Metadata'
+>
+
+    <!--[ Versions ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <freecadmin>1.0.0</freecadmin>
+    <version>0.1.0</version>
     <date>2026-01-14</date>
-    <description>A FreeCAD workbench to create standard beam profiles like I-Beams, L-Angles, Rectangular Tubes, Square Tubes, and Round Tubes.</description>
-    <maintainer email="mortenvajhoj@gmail.com">Morten Vajhøj</maintainer>
-    <license file="LICENSE-CODE">LGPL-2.1-or-later</license>
-    <license file="LICENSE-ICON">CC-BY-SA-4.0</license>
-    <url type="repository" branch="master">https://github.com/MortenVajhoj/StandardBeams</url>
-    <url type="readme">https://github.com/MortenVajhoj/StandardBeams/blob/master/README.md</url>
-    <icon>icons/IBeam.svg</icon>
+
+    <!--[ Info ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <description>Workbench to create standard beam profiles of varying shapes.</description>
+    <name>Standard Beams</name>
+
+    <!--[ Tags ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <tag>Rectangular</tag>
+    <tag>Standard</tag>
+    <tag>Profile</tag>
+    <tag>Square</tag>
+    <tag>L-Beam</tag>
+    <tag>I-Beam</tag>
+    <tag>I-Beam</tag>
+    <tag>Round</tag>
+    <tag>Angle</tag>
+    <tag>Tube</tag>
+    <tag>Beam</tag>
+
+    <!--[ Maintainers ]――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <maintainer
+        email = 'mortenvajhoj@gmail.com'
+    >Morten Vajhøj</maintainer>
+
+    <!--[ Authors ]――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <author
+        email = 'mortenvajhoj@gmail.com'
+    >Morten Vajhøj</author>
+
+    <!--[ Licenses ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <license
+        file = 'LICENSE-CODE'
+    >LGPL-2.1-or-later</license>
+
+    <license
+        file = 'LICENSE-ICON'
+    >CC-BY-SA-4.0</license>
+
+    <!--[ Icon ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <icon>freecad/StandardBeams/icons/IBeam.svg</icon>
+
+    <!--[ Urls ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <url
+        type = 'documentation'
+    >https://github.com/MortenVajhoj/StandardBeams</url>
+
+    <url
+        branch = 'main'
+        type = 'repository'
+    >https://github.com/MortenVajhoj/StandardBeams</url>
+
+    <url
+        type = 'bugtracker'
+    >https://github.com/MortenVajhoj/StandardBeams/issues</url>
+
+    <url
+        type = 'discussion'
+    >https://github.com/MortenVajhoj/StandardBeams/issues</url>
+
+    <url
+        type = 'website'
+    >https://github.com/MortenVajhoj/StandardBeams</url>
+
+    <url
+        type = 'readme'
+    >https://github.com/MortenVajhoj/StandardBeams/blob/main/README.md</url>
+
+    <!--[ Content ]――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
     <content>
         <workbench>
-            <name>Standard Beams</name>
-            <description>A FreeCAD workbench to create standard beam profiles like I-Beams, L-Angles, Rectangular Tubes, Square Tubes, and Round Tubes.</description>
+            <subdirectory>.</subdirectory>
             <classname>StandardBeamsWorkbench</classname>
-            <subdirectory>./</subdirectory>
-            <icon>icons/IBeam.svg</icon>
-            <tag>StandardBeams</tag>
         </workbench>
     </content>
+
 </package>
