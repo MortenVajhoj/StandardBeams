@@ -6,6 +6,8 @@ import csv
 import os
 from PySide import QtWidgets, QtCore
 
+from ..Misc.Imprint import imprint
+
 
 I_beam_standards = {
     "European (EN 10365 IPE)": ("European", "EuropeanIPEBeams.csv", "EuropeanIPEBeamSizes.csv"),
@@ -151,6 +153,8 @@ def create_i_beam(size_data, length, standard_name="European (EN 10365)"):
     I_beam_sizes = load_i_beam_sizes(folder, sizes_csv)
     
     body = doc.addObject('PartDesign::Body', 'IBeamBody')
+
+    imprint(body)
 
     name = f"IBeam_Sketch"
     current_sketch = body.newObject('Sketcher::SketchObject', name)

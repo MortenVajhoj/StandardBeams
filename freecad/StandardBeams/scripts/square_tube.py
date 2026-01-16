@@ -6,6 +6,9 @@ import csv
 import os
 from PySide import QtWidgets, QtCore
 
+from ..Misc.Imprint import imprint
+
+
 square_tube_standards = {
     "European (EN 10210-2 SHS)": ("European", "EuropeanSquareTubes.csv"),
 }
@@ -132,7 +135,10 @@ def create_square_tube(size_data, length):
     
     body = doc.addObject('PartDesign::Body', 'SquareTubeBody')
 
+    imprint(body)
+
     name = f"SquareTube_Sketch"
+
     current_sketch = body.newObject('Sketcher::SketchObject', name)
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 

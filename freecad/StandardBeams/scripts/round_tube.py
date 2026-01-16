@@ -7,6 +7,8 @@ import csv
 import os
 from PySide import QtWidgets, QtCore
 
+from ..Misc.Imprint import imprint
+
 
 round_tube_standards = {
     "European (EN 10210-2 CHS)": ("European", "EuropeanRoundTubes.csv"),
@@ -131,6 +133,8 @@ def create_round_tube(size_data, length):
         doc = FreeCAD.newDocument()
     
     body = doc.addObject('PartDesign::Body', 'RoundTubeBody')
+
+    imprint(body)
 
     name = f"RoundTube_Sketch"
 
