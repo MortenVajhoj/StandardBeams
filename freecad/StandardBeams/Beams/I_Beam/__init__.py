@@ -1,4 +1,4 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
-Version = '0.1.0'
+from .Command import Command as IBeamCommand
