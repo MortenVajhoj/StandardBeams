@@ -25,7 +25,7 @@ class IBeam:
             FreeCAD.Console.PrintError("I-Beam error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), "icons", "IBeam.svg")
+        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "I-Beam.svg")
         return {
             "MenuText": "I-Beam",
             "ToolTip": "Create a standard I-Beam profile",
@@ -56,7 +56,7 @@ class LAngle:
             FreeCAD.Console.PrintError("L-Angle error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), "icons", "LAngle.svg")
+        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "L-Angle.svg")
         return {
             "MenuText": "L-Angle",
             "ToolTip": "Create a standard L-Angle profile",
@@ -84,7 +84,7 @@ class RectangularTube:
             FreeCAD.Console.PrintError("Rectangular Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), "icons", "RectTube.svg")
+        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "Rectangular-Tube.svg")
         return {
             "MenuText": "Rectangular Tube",
             "ToolTip": "Create a standard Rectangular Tube profile",
@@ -113,7 +113,7 @@ class SquareTube:
             FreeCAD.Console.PrintError("Square Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), "icons", "SquareTube.svg")
+        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "SquareTube.svg")
         return {
             "MenuText": "Square Tube",
             "ToolTip": "Create a standard Square Tube profile",
@@ -142,7 +142,7 @@ class RoundTube:
             FreeCAD.Console.PrintError("Round Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), "icons", "RoundTube.svg")
+        icon = os.path.join(os.path.dirname(__file__),'Resources', "Icons", "Round-Tube.svg")
         return {
             "MenuText": "Round Tube",
             "ToolTip": "Create a standard Round Tube profile",
@@ -167,7 +167,7 @@ class StandardBeamsWorkbench(Gui.Workbench):
 
     @property
     def Icon(self):
-        return os.path.join(os.path.dirname(__file__), "icons", "IBeam.svg")
+        return os.path.join(os.path.dirname(__file__),'Resources', "Icons", "I-Beam.svg")
 
     def Initialize(self):
         cmds = [
