@@ -20,7 +20,8 @@ class StandardBeamsWorkbench(Gui.Workbench):
             'StandardBeams_L-Angle' ,
             'StandardBeams_Rectangular-Tube' ,
             'StandardBeams_Square-Tube' ,
-            'StandardBeams_Round-Tube'
+            'StandardBeams_Round-Tube' ,
+            'StandardBeams_C-Channel'
         ]
 
         self.appendToolbar("Standard Beams Tools", cmds)
@@ -39,7 +40,8 @@ class StandardBeamsWorkbench(Gui.Workbench):
                 'StandardBeams_L-Angle' ,
                 'StandardBeams_Rectangular-Tube' ,
                 'StandardBeams_Square-Tube' ,
-                'StandardBeams_Round-Tube'
+                'StandardBeams_Round-Tube' ,
+                'StandardBeams_C-Channel'
             ])
 
     def GetClassName(self):
