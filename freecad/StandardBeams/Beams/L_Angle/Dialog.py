@@ -1,15 +1,14 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
-from .Standard import l_angle_standards , load_unequal_angles , load_equal_angles
+from .Standard import l_angle_standards , load_l_angles , load_l_angle_sizes
 
 from ...Qt.Core import Qt
 
 from ...Qt.Widgets import (
     QDialog , QVBoxLayout , QHBoxLayout , QGroupBox , QLabel ,
     QComboBox , QTableWidget , QAbstractItemView , QMessageBox ,
-    QDoubleSpinBox , QDialogButtonBox , QTableWidgetItem ,
-    QCheckBox , QRadioButton
+    QDoubleSpinBox , QDialogButtonBox , QTableWidgetItem
 )
 
 
@@ -24,9 +23,9 @@ class Dialog(QDialog):
         self.setup_ui()
 
     def load_current_standard(self):
-        folder, equal_csv, unequal_csv = l_angle_standards[self.current_standard]
-        self.equal_angles = load_equal_angles(folder, equal_csv)
-        self.unequal_angles = load_unequal_angles(folder, unequal_csv)
+        folder, angles_csv, sizes_csv = l_angle_standards[self.current_standard]
+        self.l_angles = load_l_angles(folder, angles_csv)
+        self.l_angle_sizes = load_l_angle_sizes(folder, sizes_csv)
 
     def setup_ui(self):
         layout = QVBoxLayout(self)
@@ -40,24 +39,6 @@ class Dialog(QDialog):
         standard_layout.addWidget(self.standard_combo)
         standard_layout.addStretch()
         layout.addWidget(standard_group)
-
-        type_group = QGroupBox("Angle Type")
-        type_layout = QHBoxLayout(type_group)
-
-        self.equal_radio = QRadioButton("Equal Angle")
-        self.unequal_radio = QRadioButton("Unequal Angle")
-        self.equal_radio.setChecked(True)
-        self.equal_radio.toggled.connect(self.on_type_changed)
-
-        type_layout.addWidget(self.equal_radio)
-        type_layout.addWidget(self.unequal_radio)
-
-        self.mirror_check = QCheckBox("Mirror")
-        type_layout.addWidget(self.mirror_check)
-
-        type_layout.addStretch()
-
-        layout.addWidget(type_group)
 
         size_group = QGroupBox("Select Size")
         size_layout = QVBoxLayout(size_group)
@@ -99,38 +80,22 @@ class Dialog(QDialog):
         self.load_current_standard()
         self.populate_sizes()
 
-    def on_type_changed(self):
-        self.populate_sizes()
-
-    def get_current_sizes(self):
-        if self.equal_radio.isChecked():
-            return self.equal_angles
-        return self.unequal_angles
-
     def populate_sizes(self):
-        sizes = self.get_current_sizes()
-        self.size_table.setRowCount(len(sizes))
-        for row, size_data in enumerate(sizes):
+        self.size_table.setRowCount(len(self.l_angles))
+        for row, size_data in enumerate(self.l_angles):
             for col, value in enumerate(size_data):
                 item = QTableWidgetItem(str(value))
                 item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEditable)
                 self.size_table.setItem(row, col, item)
         self.size_table.resizeColumnsToContents()
-        if sizes:
+        if self.l_angles:
             self.size_table.selectRow(0)
 
     def get_selected_size(self):
         row = self.size_table.currentRow()
-        sizes = self.get_current_sizes()
         if row >= 0:
-            return sizes[row]
+            return self.l_angles[row]
         return None
-
-    def get_angle_type(self):
-        return "equal" if self.equal_radio.isChecked() else "unequal"
-
-    def get_mirror(self):
-        return self.mirror_check.isChecked()
 
     def get_length(self):
         return self.length_input.value()

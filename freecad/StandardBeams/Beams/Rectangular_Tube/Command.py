@@ -19,7 +19,8 @@ class Command:
             if dialog.exec_() == QDialog.DialogCode.Accepted:
                 size_data = dialog.get_selected_size()
                 length = dialog.get_length()
-                createBeam(size_data, length)
+                standard = dialog.current_standard
+                createBeam(size_data, length, standard)
 
         except Exception:
             Console.PrintError("Rectangular Tube error\n")

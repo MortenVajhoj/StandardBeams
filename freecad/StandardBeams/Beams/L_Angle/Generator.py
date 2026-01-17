@@ -2,9 +2,10 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from .Standard import l_angle_standards , load_l_angle_sizes
 
 
-def createBeam(size_data, length, angle_type="equal", mirror=False):
+def createBeam(size_data, length, standard_name="European (EN 10210-2 Equal)"):
 
     import FreeCAD
     import Part
@@ -13,6 +14,9 @@ def createBeam(size_data, length, angle_type="equal", mirror=False):
     doc = FreeCAD.ActiveDocument
     if doc is None:
         doc = FreeCAD.newDocument()
+
+    folder, angles_csv, sizes_csv = l_angle_standards[standard_name]
+    sizes = load_l_angle_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'LAngleBody')
 
@@ -23,17 +27,15 @@ def createBeam(size_data, length, angle_type="equal", mirror=False):
     current_sketch = body.newObject('Sketcher::SketchObject', name)
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
-    dimensions = size_data[0].split('x')
-
-    x_factor = -1 if mirror else 1
+    dimensions = sizes.get(size_data[0])
 
     points = [
         [0, 0],
-        [0, float(dimensions[0])],
-        [float(dimensions[2]) * x_factor, float(dimensions[0])],
-        [float(dimensions[2]) * x_factor, float(dimensions[2])],
-        [float(dimensions[1]) * x_factor, float(dimensions[2])],
-        [float(dimensions[1]) * x_factor, 0],
+        [0, dimensions[0]],
+        [dimensions[2], dimensions[0]],
+        [dimensions[2], dimensions[2]],
+        [dimensions[1], dimensions[2]],
+        [dimensions[1], 0],
     ]
 
     for i, pt in enumerate(points):
@@ -48,8 +50,6 @@ def createBeam(size_data, length, angle_type="equal", mirror=False):
     pad.Type = "Length"
     pad.Profile = current_sketch
     pad.Length = length
-    pad.Reversed = False
-    pad.Midplane = False
     body.recompute()
 
     current_sketch.Visibility = False

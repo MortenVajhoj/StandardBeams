@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
-from .Standard import square_tube_standards , load_square_tubes
+from .Standard import square_tube_standards , load_square_tubes , load_square_tube_sizes
 
 from ...Qt.Core import Qt
 
@@ -24,8 +24,9 @@ class Dialog(QDialog):
         self.setup_ui()
 
     def load_current_standard(self):
-        folder, csv_file = square_tube_standards[self.current_standard]
-        self.square_tubes = load_square_tubes(folder, csv_file)
+        folder, beams_csv, sizes_csv = square_tube_standards[self.current_standard]
+        self.square_tubes = load_square_tubes(folder, beams_csv)
+        self.square_tube_sizes = load_square_tube_sizes(folder, sizes_csv)
 
     def setup_ui(self):
         layout = QVBoxLayout(self)

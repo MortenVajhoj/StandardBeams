@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
-from .Standard import rectangular_tube_standards , load_rectangular_tubes
+from .Standard import rectangular_tube_standards , load_rectangular_tubes , load_rectangular_tube_sizes
 
 from ...Qt.Core import Qt
 
@@ -23,8 +23,9 @@ class Dialog(QDialog):
         self.setup_ui()
 
     def load_current_standard(self):
-        folder, csv_file = rectangular_tube_standards[self.current_standard]
-        self.rectangular_tubes = load_rectangular_tubes(folder, csv_file)
+        folder, beams_csv, sizes_csv = rectangular_tube_standards[self.current_standard]
+        self.rectangular_tubes = load_rectangular_tubes(folder, beams_csv)
+        self.rectangular_tube_sizes = load_rectangular_tube_sizes(folder, sizes_csv)
 
     def setup_ui(self):
         layout = QVBoxLayout(self)

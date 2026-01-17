@@ -19,9 +19,8 @@ class Command:
             if dialog.exec_() == QDialog.DialogCode.Accepted:
                 size_data = dialog.get_selected_size()
                 length = dialog.get_length()
-                angle_type = dialog.get_angle_type()
-                mirror = dialog.get_mirror()
-                createBeam(size_data, length, angle_type, mirror)
+                standard = dialog.current_standard
+                createBeam(size_data, length, standard)
 
         except Exception as exception:
             print(exception)

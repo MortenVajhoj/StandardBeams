@@ -5,7 +5,7 @@ from ...Misc.Imprint import imprint
 from .Standard import I_beam_standards , load_i_beam_sizes
 
 
-def createBeam(size_data, length, standard_name="European (EN 10365)"):
+def createBeam(size_data, length, standard_name="European (EN 10365 IPE)"):
 
     import FreeCAD
     import Part
@@ -54,8 +54,6 @@ def createBeam(size_data, length, standard_name="European (EN 10365)"):
     pad.Type = "Length"
     pad.Profile = current_sketch
     pad.Length = length
-    pad.Reversed = False
-    pad.Midplane = False
 
     current_sketch.Visibility = False
 

@@ -6,7 +6,7 @@ import os
 
 
 round_tube_standards = {
-    "European (EN 10210-2 CHS)": ("European", "Round-Tubes.csv"),
+    "European (EN 10210-2 CHS)": ("European", "Properties/Round-Tubes.csv", "Sizes/Round-Tube-Sizes.csv"),
 }
 
 def get_csv_path(folder, filename):
@@ -22,5 +22,17 @@ def load_round_tubes(folder, filename):
             if row:
                 tubes.append(row)
     return tubes
+
+
+def load_round_tube_sizes(folder, filename):
+    csv_path = get_csv_path(folder, filename)
+    sizes = {}
+    with open(csv_path, 'r', newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row and len(row) >= 3:
+                name = row[0]
+                sizes[name] = [float(row[1]), float(row[2])]
+    return sizes
 
 
