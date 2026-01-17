@@ -10,13 +10,13 @@ from ..Misc.Imprint import imprint
 
 
 l_angle_standards = {
-    "European (EN 10210-2)": ("European", "EuropeanEqualAngles.csv", "EuropeanUnequalAngles.csv"),
+    "European (EN 10210-2)": ("European", "Equal-Angles.csv", "Unequal-Angles.csv"),
 }
 
 
 def get_csv_path(folder, filename):
     current_directory = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(current_directory, '..', 'Standards', folder, filename)
+    return os.path.join(current_directory, '..', 'Resources','Standards', folder, filename)
 
 def load_equal_angles(folder, filename):
     csv_path = get_csv_path(folder, filename)

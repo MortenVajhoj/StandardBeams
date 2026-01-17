@@ -10,13 +10,13 @@ from ..Misc.Imprint import imprint
 
 
 I_beam_standards = {
-    "European (EN 10365 IPE)": ("European", "EuropeanIPEBeams.csv", "EuropeanIPEBeamSizes.csv"),
-    "European (EN 10365 IPN)": ("European", "EuropeanIPNBeams.csv", "EuropeanIPNBeamSizes.csv"),
+    "European (EN 10365 IPE)": ("European", "IPE-Beams.csv", "IPE-Beam-Sizes.csv"),
+    "European (EN 10365 IPN)": ("European", "IPN-Beams.csv", "IPN-Beam-Sizes.csv"),
 }
 
 def get_csv_path(folder, filename):
     current_directory = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(current_directory, '..', 'Standards', folder, filename)
+    return os.path.join(current_directory, '..', 'Resources','Standards', folder, filename)
 
 def load_i_beams(folder, filename):
     csv_path = get_csv_path(folder, filename)

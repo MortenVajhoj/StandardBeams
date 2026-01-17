@@ -20,8 +20,9 @@ class IBeam:
                 standard = dialog.current_standard
                 create_i_beam(size_data, length, standard)
 
-        except Exception:
-            FreeCAD.Console.PrintError("I-Beam error")
+        except Exception as exception:
+            print(exception)
+            FreeCAD.Console.PrintError("I-Beam error\n")
 
     def GetResources(self):
         icon = os.path.join(os.path.dirname(__file__), "icons", "IBeam.svg")
@@ -50,8 +51,9 @@ class LAngle:
                 mirror = dialog.get_mirror()
                 create_l_angle(size_data, length, angle_type, mirror)
 
-        except Exception:
-            FreeCAD.Console.PrintError("L-Angle error")
+        except Exception as exception:
+            print(exception)
+            FreeCAD.Console.PrintError("L-Angle error\n")
 
     def GetResources(self):
         icon = os.path.join(os.path.dirname(__file__), "icons", "LAngle.svg")
@@ -79,7 +81,7 @@ class RectangularTube:
                 create_rectangular_tube(size_data, length)
 
         except Exception:
-            FreeCAD.Console.PrintError("Rectangular Tube error")
+            FreeCAD.Console.PrintError("Rectangular Tube error\n")
 
     def GetResources(self):
         icon = os.path.join(os.path.dirname(__file__), "icons", "RectTube.svg")
@@ -106,8 +108,9 @@ class SquareTube:
                 length = dialog.get_length()
                 create_square_tube(size_data, length)
 
-        except Exception:
-            FreeCAD.Console.PrintError("Square Tube error")
+        except Exception as exception:
+            print(exception)
+            FreeCAD.Console.PrintError("Square Tube error\n")
 
     def GetResources(self):
         icon = os.path.join(os.path.dirname(__file__), "icons", "SquareTube.svg")
@@ -134,8 +137,9 @@ class RoundTube:
                 length = dialog.get_length()
                 create_round_tube(size_data, length)
 
-        except Exception:
-            FreeCAD.Console.PrintError("Round Tube error")
+        except Exception as exception:
+            print(exception)
+            FreeCAD.Console.PrintError("Round Tube error\n")
 
     def GetResources(self):
         icon = os.path.join(os.path.dirname(__file__), "icons", "RoundTube.svg")
