@@ -16,11 +16,11 @@ class StandardBeamsWorkbench(Gui.Workbench):
     def Initialize(self):
 
         cmds = [
-            "IBeamCommand",
-            "LAngleCommand",
-            "RectangularTubeCommand",
-            "SquareTubeCommand",
-            "RoundTubeCommand",
+            'StandardBeams_I-Beam' ,
+            'StandardBeams_L-Angle' ,
+            'StandardBeams_Rectangular-Tube' ,
+            'StandardBeams_Square-Tube' ,
+            'StandardBeams_Round-Tube'
         ]
 
         self.appendToolbar("Standard Beams Tools", cmds)
@@ -35,11 +35,11 @@ class StandardBeamsWorkbench(Gui.Workbench):
     def ContextMenu(self, recipient):
         if recipient == "view":
             self.appendContextMenu("Standard Beams", [
-                "IBeamCommand",
-                "LAngleCommand",
-                "SquareTubeCommand",
-                "RectangularTubeCommand",
-                "RoundTubeCommand",
+                'StandardBeams_I-Beam' ,
+                'StandardBeams_L-Angle' ,
+                'StandardBeams_Rectangular-Tube' ,
+                'StandardBeams_Square-Tube' ,
+                'StandardBeams_Round-Tube'
             ])
 
     def GetClassName(self):

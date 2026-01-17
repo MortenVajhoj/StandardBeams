@@ -14,8 +14,8 @@ from .Beams import (
 
 def registerCommands ():
 
-    Gui.addCommand('RectangularTubeCommand',RectangularTubeCommand())
-    Gui.addCommand('SquareTubeCommand',SquareTubeCommand())
-    Gui.addCommand('RoundTubeCommand',RoundTubeCommand())
-    Gui.addCommand('LAngleCommand',LAngleCommand())
-    Gui.addCommand('IBeamCommand',IBeamCommand())
+    Gui.addCommand('StandardBeams_Rectangular-Tube',RectangularTubeCommand())
+    Gui.addCommand('StandardBeams_Square-Tube',SquareTubeCommand())
+    Gui.addCommand('StandardBeams_Round-Tube',RoundTubeCommand())
+    Gui.addCommand('StandardBeams_L-Angle',LAngleCommand())
+    Gui.addCommand('StandardBeams_I-Beam',IBeamCommand())
