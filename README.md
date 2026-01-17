@@ -2,8 +2,8 @@
 
 A simple tool for beam-dimensions and standards inside FreeCAD
 
-![Workbench](images/WorkbenchPic.png)
-![Picking Beam](images/Modal.png)
+![](./Resources/Media/Modal-Rectangular-Tube.webp)
+![](./Resources/Media/Preview-Rectangular-Tube.webp)
 
 ## Different Beams
 
