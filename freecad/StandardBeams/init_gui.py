@@ -6,6 +6,9 @@ import FreeCADGui as Gui
 import FreeCAD
 import os
 
+from .Misc.Resources import asIcon
+
+
 class IBeam:
     def Activated(self):
         from PySide import QtWidgets
@@ -25,11 +28,10 @@ class IBeam:
             FreeCAD.Console.PrintError("I-Beam error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "I-Beam.svg")
         return {
             "MenuText": "I-Beam",
             "ToolTip": "Create a standard I-Beam profile",
-            "Pixmap": icon,
+            "Pixmap": asIcon('I-Beam'),
         }
     
     def IsActive(self):
@@ -56,11 +58,10 @@ class LAngle:
             FreeCAD.Console.PrintError("L-Angle error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "L-Angle.svg")
         return {
             "MenuText": "L-Angle",
             "ToolTip": "Create a standard L-Angle profile",
-            "Pixmap": icon,
+            "Pixmap": asIcon('L-Angle'),
         }
     
     def IsActive(self):
@@ -84,11 +85,10 @@ class RectangularTube:
             FreeCAD.Console.PrintError("Rectangular Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "Rectangular-Tube.svg")
         return {
             "MenuText": "Rectangular Tube",
             "ToolTip": "Create a standard Rectangular Tube profile",
-            "Pixmap": icon,
+            "Pixmap": asIcon('Rectangular-Tube'),
         }
     
     def IsActive(self):
@@ -113,11 +113,10 @@ class SquareTube:
             FreeCAD.Console.PrintError("Square Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__), 'Resources',"Icons", "SquareTube.svg")
         return {
             "MenuText": "Square Tube",
             "ToolTip": "Create a standard Square Tube profile",
-            "Pixmap": icon,
+            "Pixmap": asIcon('Square-Tube'),
         }
     
     def IsActive(self):
@@ -142,11 +141,10 @@ class RoundTube:
             FreeCAD.Console.PrintError("Round Tube error\n")
 
     def GetResources(self):
-        icon = os.path.join(os.path.dirname(__file__),'Resources', "Icons", "Round-Tube.svg")
         return {
             "MenuText": "Round Tube",
             "ToolTip": "Create a standard Round Tube profile",
-            "Pixmap": icon,
+            "Pixmap": asIcon('Round-Tube'),
         }
     
     def IsActive(self):
@@ -167,7 +165,7 @@ class StandardBeamsWorkbench(Gui.Workbench):
 
     @property
     def Icon(self):
-        return os.path.join(os.path.dirname(__file__),'Resources', "Icons", "I-Beam.svg")
+        return asIcon('I-Beam')
 
     def Initialize(self):
         cmds = [
