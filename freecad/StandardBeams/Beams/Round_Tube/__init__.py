@@ -1,0 +1,5 @@
+
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# SPDX-FileNotice: Part of the Standard Beams addon.
+
+from .Command import Command as RoundTubeCommand
