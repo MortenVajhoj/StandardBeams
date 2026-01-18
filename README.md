@@ -2,54 +2,42 @@
 
 A simple FreeCAD tool for working with standard beam dimensions.
 
-View section properties such as area, depth, width, moments of inertia (X/Y), and plastic modulus (X/Y).
+View properties such as area, depth, width, moments of inertia (X/Y), and plastic modulus (X/Y).
 Select a beam type, choose a standard size, and it will insert the beam directly into your FreeCAD document.
 
 ![](./Resources/Media/Modal-Rectangular-Tube.webp)
 ![](./Resources/Media/Preview-Workbench.webp)
 
-## Different Beams
 
-### I-Beams
-![](./Resources/Media/I-Beam.webp)
-### Rectangular Tubes
-![](./Resources/Media/Rectangular-Tube.webp)
-### Round Tubes
-![](./Resources/Media/Round-Tube.webp)
-### Square Tubes
-![](./Resources/Media/Square-Tube.webp)
-### Equal and Unequal L-Angles
-![](./Resources/Media/Equal-Angle.webp)
-![](./Resources/Media/Unequal-Angle.webp)
-### C-Channel
-![](./Resources/Media/C-Channel.webp)
-### H-Beams
-![](./Resources/Media/H-Beam.webp)
+## Repo Structure
 
-## Current Standards
-- I-Beam
-    - IPE (EN 10365)
-    - IPN (EN 10365)
-- L-Angle
-    - Equal Leg (EN 10056-1)
-    - Unequal Leg (EN 10056-1)
-- Rectangular Tubes
-    - RHS (EN 10210-2)
-- Square Tubes
-    - SHS (EN 10210-2)
-- Round Tubes
-    - CHS (EN 10210-2)
-- C-Channels
-    - UAP (EN 10365)
-    - UPE (EN 10365)
-    - UPN (EN 10365)
-- H-Beams
-    - HD (EN 10365)
-    - HE (EN 10365)
-    - HL (EN 10365)
-    - HP (EN 10365)
+```text
+├── freecad/
+│   └── StandardBeams/           # Main addon source code
+│       ├── Beams/               
+│       │   ├── C_Channel/       # Generation Code, Command, Standards, and Dialog
+│       │   ├── H_Beam/
+│       │   ├── I_Beam/
+│       │   ├── L_Angle/
+│       │   ├── Rectangular_Tube/
+│       │   ├── Round_Tube/
+│       │   └── Square_Tube/
+│       ├── Misc/                
+│       ├── Qt/                  
+│       ├── Resources/           # Data (CSVs) and icons for the addon
+│       ├── Command.py           
+│       ├── init_gui.py          
+│       └── Workbench.py         # Workbench setup
+├── Resources/                   # Media and Overview for the repository
+├── LICENSE-CODE                 # LGPL-2.1 license for the code
+├── LICENSE-ICON                 # CC-BY-SA-4.0 license for icons
+├── package.xml                  # FreeCAD metadata file
+├── pyproject.toml               
+└── README.md                    
+```
 
+Feel Free to contribute to the repo with new Standards, or other feature ideas.
 
-Note: this is the first version of the Addon. More Beams And Standards will be added
-
-
+## License
+- **Code**: [LGPL-2.1](LICENSE-CODE) - GNU Lesser General Public License v2.1
+- **Icons**: [CC-BY-SA-4.0](LICENSE-ICON) - Creative Commons Attribution-ShareAlike 4.0 International
