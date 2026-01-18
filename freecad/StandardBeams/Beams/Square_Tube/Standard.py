@@ -6,7 +6,7 @@ import os
 
 
 square_tube_standards = {
-    "European (EN 10210-2 SHS)": ("European", "Properties/Square-Tubes.csv", "Sizes/Square-Tube-Sizes.csv"),
+    "SHS (EN 10210-2)": ("European", "Properties/Square-Tubes.csv", "Sizes/Square-Tube-Sizes.csv"),
 }
 
 

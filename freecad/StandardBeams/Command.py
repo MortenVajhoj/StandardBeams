@@ -9,8 +9,9 @@ from .Beams import (
     RoundTubeCommand ,
     LAngleCommand ,
     IBeamCommand ,
+    HBeamCommand,
     CChannelCommand,
-)
+    )
 
 
 def registerCommands ():
@@ -21,3 +22,4 @@ def registerCommands ():
     Gui.addCommand('StandardBeams_L-Angle',LAngleCommand())
     Gui.addCommand('StandardBeams_I-Beam',IBeamCommand())
     Gui.addCommand('StandardBeams_C-Channel',CChannelCommand())
+    Gui.addCommand('StandardBeams_H-Beam',HBeamCommand())

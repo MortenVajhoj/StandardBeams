@@ -7,3 +7,4 @@ from .Round_Tube import *
 from .L_Angle import *
 from .I_Beam import *
 from .C_Channel import *
+from .H_Beam import *

@@ -2,10 +2,10 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
-from .Standard import I_beam_standards , load_i_beam_sizes
+from .Standard import H_beam_standards , load_h_beam_sizes
 
 
-def createBeam(size_data, length, standard_name="IPE (EN 10365)"):
+def createBeam(size_data, length, standard_name="HD (EN 10365)"):
 
     import FreeCAD
     import Part
@@ -15,18 +15,18 @@ def createBeam(size_data, length, standard_name="IPE (EN 10365)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, beams_csv, sizes_csv = I_beam_standards[standard_name]
-    I_beam_sizes = load_i_beam_sizes(folder, sizes_csv)
+    folder, beams_csv, sizes_csv = H_beam_standards[standard_name]
+    h_beam_sizes = load_h_beam_sizes(folder, sizes_csv)
 
-    body = doc.addObject('PartDesign::Body', 'IBeamBody')
+    body = doc.addObject('PartDesign::Body', 'HBeamBody')
 
     imprint(body)
 
-    name = f"IBeam_Sketch"
+    name = f"HBeam_Sketch"
     current_sketch = body.newObject('Sketcher::SketchObject', name)
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
-    dimensions = I_beam_sizes.get(size_data[0])
+    dimensions = h_beam_sizes.get(size_data[0])
     points = [
         [0, 0],
         [dimensions[1], 0],
@@ -50,7 +50,7 @@ def createBeam(size_data, length, standard_name="IPE (EN 10365)"):
 
         current_sketch.addGeometry(Part.LineSegment(p1, p2), False)
 
-    pad = body.newObject('PartDesign::Pad', "IBeamPad")
+    pad = body.newObject('PartDesign::Pad', "HBeamPad")
     pad.Type = "Length"
     pad.Profile = current_sketch
     pad.Length = length

@@ -6,8 +6,8 @@ import os
 
 
 l_angle_standards = {
-    "European (EN 10210-2 Equal)": ("European", "Properties/Equal-Angles.csv", "Sizes/Equal-Angle-Sizes.csv"),
-    "European (EN 10210-2 Unequal)": ("European", "Properties/Unequal-Angles.csv", "Sizes/Unequal-Angle-Sizes.csv"),
+    "Equal Leg (EN 10056-1)": ("European", "Properties/Equal-Angles.csv", "Sizes/Equal-Angle-Sizes.csv"),
+    "Unequal Leg (EN 10056-1)": ("European", "Properties/Unequal-Angles.csv", "Sizes/Unequal-Angle-Sizes.csv"),
 }
 
 

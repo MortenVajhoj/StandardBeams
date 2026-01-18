@@ -5,7 +5,7 @@ from ...Misc.Imprint import imprint
 from .Standard import C_channel_standards , load_c_channel_sizes
 
 
-def createBeam(size_data, length, standard_name="UAP Channel"):
+def createBeam(size_data, length, standard_name="UAP (EN 10365)"):
 
     import FreeCAD
     import Part

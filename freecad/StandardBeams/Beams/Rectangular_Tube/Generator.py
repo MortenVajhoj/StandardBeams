@@ -5,7 +5,7 @@ from ...Misc.Imprint import imprint
 from .Standard import rectangular_tube_standards , load_rectangular_tube_sizes
 
 
-def createBeam(size_data, length, standard_name="European (EN 10210-2 RHS)"):
+def createBeam(size_data, length, standard_name="RHS (EN 10210-2)"):
 
     import FreeCAD
     import Part

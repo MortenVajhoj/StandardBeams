@@ -5,7 +5,7 @@ from ...Misc.Imprint import imprint
 from .Standard import l_angle_standards , load_l_angle_sizes
 
 
-def createBeam(size_data, length, standard_name="European (EN 10210-2 Equal)"):
+def createBeam(size_data, length, standard_name="Equal Leg (EN 10056-1)"):
 
     import FreeCAD
     import Part

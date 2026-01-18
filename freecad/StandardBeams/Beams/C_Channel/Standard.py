@@ -6,9 +6,9 @@ import os
 
 
 C_channel_standards = {
-    "UAP Channel": ("European", "Properties/UAP-Channels.csv", "Sizes/UAP-Channel-Sizes.csv"),
-    "UPE Channel ": ("European", "Properties/UPE-Channels.csv", "Sizes/UPE-Channel-Sizes.csv"),
-    "UPN Channel": ("European", "Properties/UPN-Channels.csv", "Sizes/UPN-Channel-Sizes.csv")
+    "UAP (EN 10365)": ("European", "Properties/UAP-Channels.csv", "Sizes/UAP-Channel-Sizes.csv"),
+    "UPE (EN 10365)": ("European", "Properties/UPE-Channels.csv", "Sizes/UPE-Channel-Sizes.csv"),
+    "UPN (EN 10365)": ("European", "Properties/UPN-Channels.csv", "Sizes/UPN-Channel-Sizes.csv")
 }
 
 def get_csv_path(folder, filename):

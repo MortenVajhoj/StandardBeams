@@ -6,8 +6,8 @@ import os
 
 
 I_beam_standards = {
-    "European (EN 10365 IPE)": ("European", "Properties/IPE-Beams.csv", "Sizes/IPE-Beam-Sizes.csv"),
-    "European (EN 10365 IPN)": ("European", "Properties/IPN-Beams.csv", "Sizes/IPN-Beam-Sizes.csv"),
+    "IPE (EN 10365)": ("European", "Properties/IPE-Beams.csv", "Sizes/IPE-Beam-Sizes.csv"),
+    "IPN (EN 10365)": ("European", "Properties/IPN-Beams.csv", "Sizes/IPN-Beam-Sizes.csv"),
 }
 
 def get_csv_path(folder, filename):

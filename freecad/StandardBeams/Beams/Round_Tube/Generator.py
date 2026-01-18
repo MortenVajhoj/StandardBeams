@@ -5,7 +5,7 @@ from ...Misc.Imprint import imprint
 from .Standard import round_tube_standards , load_round_tube_sizes
 
 
-def createBeam(size_data, length, standard_name="European (EN 10210-2 CHS)"):
+def createBeam(size_data, length, standard_name="CHS (EN 10210-2)"):
 
     import FreeCAD
     import Part

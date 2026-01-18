@@ -6,7 +6,7 @@ import os
 
 
 round_tube_standards = {
-    "European (EN 10210-2 CHS)": ("European", "Properties/Round-Tubes.csv", "Sizes/Round-Tube-Sizes.csv"),
+    "CHS (EN 10210-2)": ("European", "Properties/Round-Tubes.csv", "Sizes/Round-Tube-Sizes.csv"),
 }
 
 def get_csv_path(folder, filename):
