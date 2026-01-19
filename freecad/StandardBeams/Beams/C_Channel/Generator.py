@@ -2,6 +2,7 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from ...Misc.Units import convert_dimensions_to_mm, convert_length_to_mm
 from .Standard import C_channel_standards , load_c_channel_sizes
 
 
@@ -15,8 +16,8 @@ def createBeam(size_data, length, standard_name="UAP (EN 10365)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, channels_csv, sizes_csv = C_channel_standards[standard_name]
-    c_channel_sizes = load_c_channel_sizes(folder, sizes_csv)
+    folder, sizes_csv = C_channel_standards[standard_name]
+    _, c_channel_sizes = load_c_channel_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'CChannelBody')
 
@@ -28,15 +29,18 @@ def createBeam(size_data, length, standard_name="UAP (EN 10365)"):
 
     dimensions = c_channel_sizes.get(size_data[0])
 
+    dimensions = convert_dimensions_to_mm(dimensions, folder)
+    length = convert_length_to_mm(length, folder)
+
     points = [
         [0, 0],
-        [dimensions[1], 0],
-        [dimensions[1], dimensions[3]],
+        [dimensions[0], 0],
+        [dimensions[0], dimensions[1]],
+        [dimensions[0] - dimensions[2], dimensions[1]],
+        [dimensions[0] - dimensions[2], dimensions[3]],
         [dimensions[2], dimensions[3]],
-        [dimensions[2], dimensions[0] - dimensions[3]],
-        [dimensions[1], dimensions[0] - dimensions[3]],
-        [dimensions[1], dimensions[0]],
-        [0, dimensions[0]],
+        [dimensions[2], dimensions[1]],
+        [0, dimensions[1]],
     ]
 
     for i, pt in enumerate(points):

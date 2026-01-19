@@ -2,6 +2,7 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from ...Misc.Units import convert_dimensions_to_mm, convert_length_to_mm
 from .Standard import square_tube_standards , load_square_tube_sizes
 
 
@@ -15,8 +16,8 @@ def createBeam(size_data, length, standard_name="SHS (EN 10210-2)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, beams_csv, sizes_csv = square_tube_standards[standard_name]
-    square_tube_sizes = load_square_tube_sizes(folder, sizes_csv)
+    folder, sizes_csv = square_tube_standards[standard_name]
+    _, square_tube_sizes = load_square_tube_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'SquareTubeBody')
 
@@ -28,6 +29,9 @@ def createBeam(size_data, length, standard_name="SHS (EN 10210-2)"):
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
     dimensions = square_tube_sizes.get(size_data[0])
+    
+    dimensions = convert_dimensions_to_mm(dimensions, folder)
+    length = convert_length_to_mm(length, folder)
     outer_points = [
         [0, 0],
         [0, dimensions[0]],

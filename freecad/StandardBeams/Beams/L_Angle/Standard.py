@@ -3,11 +3,12 @@
 
 import csv
 import os
+from .Properties import Area_property, Moment_of_Inertia_X_property, Moment_of_Inertia_Y_property
 
 
 l_angle_standards = {
-    "Equal Leg (EN 10056-1)": ("European", "Properties/Equal-Angles.csv", "Sizes/Equal-Angle-Sizes.csv"),
-    "Unequal Leg (EN 10056-1)": ("European", "Properties/Unequal-Angles.csv", "Sizes/Unequal-Angle-Sizes.csv"),
+    "Equal Leg (EN 10056-1)": ("European", "Equal-Angle-Sizes.csv"),
+    "Unequal Leg (EN 10056-1)": ("European", "Unequal-Angle-Sizes.csv"),
 }
 
 
@@ -15,26 +16,31 @@ def get_csv_path(folder, filename):
     current_directory = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(current_directory, '..','..', 'Resources','Standards', folder, filename)
 
-def load_l_angles(folder, filename):
-    csv_path = get_csv_path(folder, filename)
-    angles = []
-    with open(csv_path, 'r', newline='', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if row:
-                angles.append(row)
-    return angles
-
-
 def load_l_angle_sizes(folder, filename):
     csv_path = get_csv_path(folder, filename)
-    sizes = {}
+    sizes = []
+    sizes_dict = {}
     with open(csv_path, 'r', newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             if row and len(row) >= 4:
                 name = row[0]
-                sizes[name] = [float(row[1]), float(row[2]), float(row[3])]
-    return sizes
+                h = float(row[1])
+                b = float(row[2])
+                t = float(row[3])
+                
+                size_data = [h, b, t]
+                
+                area = Area_property(size_data)
+                ix = Moment_of_Inertia_X_property(size_data)
+                iy = Moment_of_Inertia_Y_property(size_data)
+                
+                row.append(f"{area:.2f}")
+                row.append(f"{ix:.2f}")
+                row.append(f"{iy:.2f}")
+                
+                sizes.append(row)
+                sizes_dict[name] = size_data
+    return sizes, sizes_dict
 
 

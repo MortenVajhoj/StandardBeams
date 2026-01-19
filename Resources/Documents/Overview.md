@@ -2,7 +2,6 @@
 
 A simple FreeCAD tool for working with standard beam dimensions.
 
-View section properties such as area, depth, width, moments of inertia (X/Y), and plastic modulus (X/Y).
 Select a beam type, choose a standard size, and it will insert the beam directly into your FreeCAD document.
 
 ![](../Media/Modal-Rectangular-Tube.webp)
@@ -60,7 +59,6 @@ Select a beam type, choose a standard size, and it will insert the beam directly
 - HD (EN 10365)
 - HE (EN 10365)
 - HL (EN 10365)
-- HP (EN 10365)
 
 ![](../Media/H-Beam.webp)
 

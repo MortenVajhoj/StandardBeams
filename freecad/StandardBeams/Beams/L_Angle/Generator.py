@@ -2,6 +2,7 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from ...Misc.Units import convert_dimensions_to_mm, convert_length_to_mm
 from .Standard import l_angle_standards , load_l_angle_sizes
 
 
@@ -15,8 +16,8 @@ def createBeam(size_data, length, standard_name="Equal Leg (EN 10056-1)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, angles_csv, sizes_csv = l_angle_standards[standard_name]
-    sizes = load_l_angle_sizes(folder, sizes_csv)
+    folder, sizes_csv = l_angle_standards[standard_name]
+    _, sizes = load_l_angle_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'LAngleBody')
 
@@ -28,6 +29,9 @@ def createBeam(size_data, length, standard_name="Equal Leg (EN 10056-1)"):
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
     dimensions = sizes.get(size_data[0])
+
+    dimensions = convert_dimensions_to_mm(dimensions, folder)
+    length = convert_length_to_mm(length, folder)
 
     points = [
         [0, 0],

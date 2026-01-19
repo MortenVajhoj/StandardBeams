@@ -1,31 +1,34 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
-from .Standard import round_tube_standards , load_round_tubes , load_round_tube_sizes
+from .Standard import round_tube_standards, load_round_tube_sizes
 
 from ...Qt.Core import Qt
 
 from ...Qt.Widgets import (
-    QDialog , QVBoxLayout , QHBoxLayout , QGroupBox , QLabel ,
-    QComboBox , QTableWidget , QAbstractItemView , QMessageBox ,
-    QDoubleSpinBox , QDialogButtonBox , QTableWidgetItem ,
-    QCheckBox , QRadioButton
+    QDialog, QVBoxLayout, QHBoxLayout, QGroupBox, QLabel,
+    QComboBox, QTableWidget, QAbstractItemView, QMessageBox,
+    QDoubleSpinBox, QDialogButtonBox, QTableWidgetItem
 )
+
+from ...Misc.Units import get_table_headers, get_unit_suffix, get_column_count
+
+beam_type = "round_tube"
 
 
 class Dialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Round Tube")
-        self.setMinimumWidth(400)
+        self.setMinimumWidth(650)
+        self.setMinimumHeight(450)
         self.current_standard = list(round_tube_standards.keys())[0]
         self.load_current_standard()
         self.setup_ui()
 
     def load_current_standard(self):
-        folder, beams_csv, sizes_csv = round_tube_standards[self.current_standard]
-        self.round_tubes = load_round_tubes(folder, beams_csv)
-        self.round_tube_sizes = load_round_tube_sizes(folder, sizes_csv)
+        folder, sizes_csv = round_tube_standards[self.current_standard]
+        self.sizes_list, self.sizes_dict = load_round_tube_sizes(folder, sizes_csv)
 
     def setup_ui(self):
         layout = QVBoxLayout(self)
@@ -44,8 +47,9 @@ class Dialog(QDialog):
         size_layout = QVBoxLayout(size_group)
 
         self.size_table = QTableWidget()
-        self.size_table.setColumnCount(8)
-        self.size_table.setHorizontalHeaderLabels(["Shape", "Area (mm^2)", "Depth (mm)", "Width (mm)", "I_x (mm^4)", "I_y (mm^4)", "Plastic Modulus X (mm^3)", "Plastic Modulus Y (mm^3)"])
+        folder, _ = round_tube_standards[self.current_standard]
+        self.size_table.setColumnCount(get_column_count(beam_type))
+        self.size_table.setHorizontalHeaderLabels(get_table_headers(folder, beam_type))
         self.size_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.size_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.size_table.horizontalHeader().setStretchLastSection(True)
@@ -62,7 +66,7 @@ class Dialog(QDialog):
         self.length_input = QDoubleSpinBox()
         self.length_input.setRange(1, 100000)
         self.length_input.setValue(1000)
-        self.length_input.setSuffix(" mm")
+        self.length_input.setSuffix(get_unit_suffix(folder))
         self.length_input.setDecimals(2)
         length_layout.addWidget(self.length_input)
 
@@ -78,27 +82,35 @@ class Dialog(QDialog):
     def on_standard_changed(self, standard_name):
         self.current_standard = standard_name
         self.load_current_standard()
+        folder, _ = round_tube_standards[self.current_standard]
+        self.size_table.setColumnCount(get_column_count(beam_type))
+        self.size_table.setHorizontalHeaderLabels(get_table_headers(folder, beam_type))
+        self.length_input.setSuffix(get_unit_suffix(folder))
         self.populate_sizes()
 
     def populate_sizes(self):
-        self.size_table.setRowCount(len(self.round_tubes))
-        for row, size_data in enumerate(self.round_tubes):
+        self.size_table.setRowCount(len(self.sizes_list))
+        for row, size_data in enumerate(self.sizes_list):
             for col, value in enumerate(size_data):
                 item = QTableWidgetItem(str(value))
                 item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEditable)
                 self.size_table.setItem(row, col, item)
         self.size_table.resizeColumnsToContents()
-        if self.round_tubes:
+        if self.sizes_list:
             self.size_table.selectRow(0)
 
     def get_selected_size(self):
         row = self.size_table.currentRow()
         if row >= 0:
-            return self.round_tubes[row]
+            return self.sizes_list[row]
         return None
 
     def get_length(self):
         return self.length_input.value()
+
+    def get_current_folder(self):
+        folder, _ = round_tube_standards[self.current_standard]
+        return folder
 
     def accept(self):
         if self.get_selected_size() is None:

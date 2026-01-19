@@ -2,6 +2,7 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from ...Misc.Units import convert_dimensions_to_mm, convert_length_to_mm
 from .Standard import round_tube_standards , load_round_tube_sizes
 
 
@@ -15,8 +16,8 @@ def createBeam(size_data, length, standard_name="CHS (EN 10210-2)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, beams_csv, sizes_csv = round_tube_standards[standard_name]
-    round_tube_sizes = load_round_tube_sizes(folder, sizes_csv)
+    folder, sizes_csv = round_tube_standards[standard_name]
+    _, round_tube_sizes = load_round_tube_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'RoundTubeBody')
 
@@ -28,6 +29,10 @@ def createBeam(size_data, length, standard_name="CHS (EN 10210-2)"):
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
     dimensions = round_tube_sizes.get(size_data[0])
+
+    dimensions = convert_dimensions_to_mm(dimensions, folder)
+    length = convert_length_to_mm(length, folder)
+
     outer_diameter = dimensions[0]
     inner_diameter = outer_diameter - 2 * dimensions[1]
 

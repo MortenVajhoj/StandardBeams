@@ -2,6 +2,7 @@
 # SPDX-FileNotice: Part of the Standard Beams addon.
 
 from ...Misc.Imprint import imprint
+from ...Misc.Units import convert_dimensions_to_mm, convert_length_to_mm
 from .Standard import H_beam_standards , load_h_beam_sizes
 
 
@@ -15,8 +16,8 @@ def createBeam(size_data, length, standard_name="HD (EN 10365)"):
     if doc is None:
         doc = FreeCAD.newDocument()
 
-    folder, beams_csv, sizes_csv = H_beam_standards[standard_name]
-    h_beam_sizes = load_h_beam_sizes(folder, sizes_csv)
+    folder, sizes_csv = H_beam_standards[standard_name]
+    _, h_beam_sizes = load_h_beam_sizes(folder, sizes_csv)
 
     body = doc.addObject('PartDesign::Body', 'HBeamBody')
 
@@ -27,6 +28,9 @@ def createBeam(size_data, length, standard_name="HD (EN 10365)"):
     current_sketch.Placement = FreeCAD.Placement(FreeCAD.Vector(0, 0, 0), FreeCAD.Rotation(0, 0, 0, 1))
 
     dimensions = h_beam_sizes.get(size_data[0])
+
+    dimensions = convert_dimensions_to_mm(dimensions, folder)
+    length = convert_length_to_mm(length, folder)
     points = [
         [0, 0],
         [dimensions[1], 0],
